@@ -33,10 +33,10 @@ jobs:
             with:
                 aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
                 aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                application_name: MyApplicationName
-                environment_name: MyApplication-Environment
+                application_name: "screening-app"
+                environment_name: "screening-app-dev" 
                 version_label: 12345
-                region: us-west-2
+                region: ${{ AWS_DEFAULT_REGION }}  
                 deployment_package: deploy.zip
           
           
