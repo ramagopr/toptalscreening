@@ -36,7 +36,7 @@ jobs:
                 application_name: "screening-app"
                 environment_name: "screening-app-dev" 
                 version_label: 12345
-                region: ${{ AWS_DEFAULT_REGION }}  
+                region: "ap-southeast-2"
                 deployment_package: deploy.zip
           
           
