@@ -28,20 +28,17 @@ jobs:
           - name: Generate deployment package
             run: zip -r deploy.zip . -x '*.git*'
 
-          - name: Upload to S3
-            run: |
-                  aws s3 sync ./build s3://test-bucket
-            env:
-                  AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
-                  AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-                  AWS_DEFAULT_REGION: 'ap-southeast-2'
-
-          - name: Deploy to AWS CloudFormation
-            uses: aws-actions/aws-cloudformation-github-deploy@v1
+          - name: Deploy to EB
+            uses: einaregilsson/beanstalk-deploy@v20
             with:
-              name: MyStack
-              template: myStack.yaml
-              parameter-overrides: "MyParam1=myValue,MyParam2=${{ secrets.MY_SECRET_VALUE }}"
+                aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                application_name: "screening-app"
+                environment_name: "screening-app-dev" 
+                version_label: 23456 
+                region: "ap-southeast-2"
+                deployment_package: deploy.zip
+                use_existing_version_if_available: true
           
           
           
