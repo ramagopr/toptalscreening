@@ -28,7 +28,7 @@
                 "Description": "AWS ElasticBeanstalk Sample Application Version",
                 "SourceBundle": {
                     "S3Bucket": {
-                        "Fn::Sub": "ttt-screening-bucket"
+                        "Fn::Sub": "tt-screening-bucket"
                     },
                     "S3Key": "deploy.zip"
                 }
