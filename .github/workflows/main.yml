@@ -42,6 +42,10 @@ jobs:
               name: MyStack
               template: cfn.json
               parameter-overrides: "DBUSER=${{ secrets.DBUSER }},DBHOST=${{ secrets.DBHOST }}"
+            env:
+              AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+              AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+              AWS_DEFAULT_REGION: 'ap-southeast-2'
           
           
           
