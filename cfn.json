@@ -16,9 +16,9 @@
                 "Description": "AWS ElasticBeanstalk Sample Application Version",
                 "SourceBundle": {
                     "S3Bucket": {
-                        "Fn::Sub": "elasticbeanstalk-samples-${AWS::Region}"
+                        "Fn::Sub": "ttt-screening-bucket"
                     },
-                    "S3Key": "php-newsample-app.zip"
+                    "S3Key": "deploy.zip"
                 }
             }
         },
