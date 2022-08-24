@@ -28,6 +28,14 @@ jobs:
           - name: Generate deployment package
             run: zip -r deploy.zip . -x '*.git*'
 
+          - name: Configure AWS credentials
+            id: creds
+            uses: aws-actions/configure-aws-credentials@v1
+            with:
+              aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+              aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+              aws-region: 'ap-southeast-2'
+
           - name: Upload to S3
             run: |
                   aws s3 cp deploy.zip s3://tt-screening-bucket
@@ -42,9 +50,6 @@ jobs:
               name: MyStack
               template: cfn.json
               parameter-overrides: "DBUSER=${{ secrets.DBUSER }},DBHOST=${{ secrets.DBHOST }}"
-              aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-              aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-              aws-region: 'ap-southeast-2'
 
           
           
