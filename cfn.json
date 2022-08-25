@@ -10,7 +10,12 @@
             "Type" : "String",
             "Default" : "db host",
             "Description" : "db host"
-          }
+        },
+        "SourceBundle" : {
+        "Type" : "String",
+        "Default" : "source bundle",
+        "Description" : "source bundle"
+        }
       },
     "Resources": {
         "sampleApplication": {
@@ -30,7 +35,7 @@
                     "S3Bucket": {
                         "Fn::Sub": "tt-screening-bucket"
                     },
-                    "S3Key": "deploy.zip"
+                    "S3Key": {"Fn::Sub": "${SourceBundle}"}
                 }
             }
         },
